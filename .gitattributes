@@ -1,0 +1,11 @@
+# Normalize all text files to LF in the repository and in working trees.
+# Keeps checkouts byte-identical across platforms regardless of each
+# contributor's core.autocrlf setting.
+* text=auto eol=lf
+
+# Binary assets - never apply line-ending conversion.
+*.bps binary
+*.bin binary
+*.gen binary
+*.gif binary
+*.png binary

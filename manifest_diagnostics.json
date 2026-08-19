@@ -1,0 +1,9 @@
+{
+  "name": "shadowrun-defragged-diagnostics",
+  "display_name": "Defragged Diagnostics Only",
+  "version": "1.0",
+  "patches": [
+    "defragged-diagnostics",
+    "title-screen-attribution"
+  ]
+}
