@@ -1,9 +1,10 @@
 {
   "name": "shadowrun-defragged-diagnostics",
   "display_name": "Defragged Diagnostics Only",
-  "version": "1.0",
+  "version": "1.0.1",
   "patches": [
     "defragged-diagnostics",
+    "sram-access-fix",
     "title-screen-attribution"
   ]
 }

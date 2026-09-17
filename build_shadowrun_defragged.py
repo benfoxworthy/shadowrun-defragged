@@ -57,6 +57,7 @@ SAFE_NAME = re.compile(r"[a-z0-9][a-z0-9-]*\Z")
 SAFE_VERSION = re.compile(r"[0-9][0-9A-Za-z.-]*\Z")
 LIST_CATEGORY_ORDER = (
     "Attribution/Diagnostics",
+    "Compatibility",
     "Gameplay Bug Fixes",
     "UI/Display Bug Fixes",
     "Balance Improvements",

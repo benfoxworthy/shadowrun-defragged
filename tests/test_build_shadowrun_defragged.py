@@ -1279,10 +1279,10 @@ class ShadowrunDefraggedBuilderTests(unittest.TestCase):
             )
             self.assertEqual(0, result.returncode, result.stderr)
             self.assertTrue(
-                (Path(temp_dir) / "shadowrun-defragged-v1.0.bps").is_file()
+                (Path(temp_dir) / "shadowrun-defragged-v1.0.1.bps").is_file()
             )
             self.assertTrue(
-                (Path(temp_dir) / "shadowrun-defragged-v1.0.bin").is_file()
+                (Path(temp_dir) / "shadowrun-defragged-v1.0.1.bin").is_file()
             )
 
     @unittest.skipUnless(

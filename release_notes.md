@@ -1,5 +1,12 @@
 # *Shadowrun Defragged* Release Notes
 
+## v1.0.1
+
+### Core Patches
+These changes are included in both *Defragged* and *Defragged Core*:
+
+ - Fixed saving/loading when playing *Defragged* on certain third-party physical Genesis cartridges that require use of the Genesis SRAM-access flag.
+
 ## v1.0
 
 ### Core Patches

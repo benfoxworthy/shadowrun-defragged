@@ -1,9 +1,10 @@
 {
   "name": "shadowrun-defragged",
   "display_name": "Shadowrun Defragged",
-  "version": "1.0",
+  "version": "1.0.1",
   "patches": [
     "defragged-diagnostics",
+    "sram-access-fix",
     "title-screen-attribution",
 
     "agira-power-focus-notebook-rank-4",
