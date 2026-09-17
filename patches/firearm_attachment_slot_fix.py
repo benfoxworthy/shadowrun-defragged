@@ -28,7 +28,8 @@ and Sound Suppressors already used the correct slot in a different routine and
 remain untouched. No inventory search is needed, which also preserves distinct
 attachments on two copies of the same weapon.
 
-Note: This fix also makes three enemies stronger (none are made weaker)
+Note: This fix also makes three enemies stronger (none are made weaker). This
+is addressed by the ``renraku-strike-team-damage-fix`` patch.
   Ito / Strike Team (AK-97): Gas Vent II begins working
   Strike Team (Max-Power): Smartgun + Smartlink begins working
   Elven Guard: Smartgun + Smartlink begins working  (This enemy does not appear

@@ -6,6 +6,7 @@
 These changes are included in both *Defragged* and *Defragged Core*:
 
  - Fixed saving/loading when playing *Defragged* on certain third-party physical Genesis cartridges that require use of the Genesis SRAM-access flag.
+ - Removed the Smartgun and Gas Vent II attachments from Renraku Strike Team enemies (including Ito, who uses the same enemy template) to prevent them from becoming too lethal after the `firearm-attachment-slot-fix` patch.
 
 ### Additional Patches
 Included in the full *Defragged* patch only and excluded from *Defragged Core*:
