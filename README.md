@@ -29,6 +29,7 @@ It's also possible to build a custom patch - [see below](#specifying-a-manifest-
    them until the end of the run.
  - Subtle balance tweaks, including making magic damage from Hell Hounds and
    Thon slightly easier to resist with high stats.
+ - Fixes save/load compatibility on some physical flash cartridges
  - Various UI bug fixes, improved tooltips, and more!
 
 **[Full list of changes in release_notes.md.](release_notes.md)**
@@ -43,14 +44,14 @@ reverse-engineering and modding.
 Most players who want to try *Defragged* should simply download one of the two
 pre-built BPS ROM patches, which can be applied with any standard ROM-patcher
 software that supports the BPS format (search "genesis rom patcher"):
- - **Defragged** (recommended): [shadowrun-defragged-v1.0.bps](https://github.com/benfoxworthy/shadowrun-defragged/releases/download/v1.0/shadowrun-defragged-v1.0.bps)
- - **Defragged Core**: [shadowrun-defragged-core-v1.0.bps](https://github.com/benfoxworthy/shadowrun-defragged/releases/download/v1.0/shadowrun-defragged-core-v1.0.bps)
+ - **Defragged** (recommended): [shadowrun-defragged-v1.0.1.bps](https://github.com/benfoxworthy/shadowrun-defragged/releases/download/v1.0.1/shadowrun-defragged-v1.0.1.bps)
+ - **Defragged Core**: [shadowrun-defragged-core-v1.0.1.bps](https://github.com/benfoxworthy/shadowrun-defragged/releases/download/v1.0.1/shadowrun-defragged-core-v1.0.1.bps)
 
 To confirm a download is intact, compare its SHA-256 against these values:
 
 ```text
-shadowrun-defragged-v1.0.bps       9344A6BFFB718370129FD97D3DDBDB1BA0D9E4B71E358B11FD8FE7B7958497E2
-shadowrun-defragged-core-v1.0.bps  116B00E8FE6A6F3460F3FE2D3FA4039E98F7ED01FE3FE339EE9A11D417F62AED
+shadowrun-defragged-v1.0.1.bps       ABEDBFD4E8BB82C4B418912F14E81920C524665215ACA2BA15631E8CD3844D5C
+shadowrun-defragged-core-v1.0.1.bps  B4C6CCEA0FDE204E539EB4264564130626628ACE9EE6FF6A55833239B667F81A
 ```
 
 You will need to obtain your own legal copy of the *Shadowrun* ROM. This
