@@ -10,7 +10,9 @@ These changes are included in both *Defragged* and *Defragged Core*:
 ### Additional Patches
 Included in the full *Defragged* patch only and excluded from *Defragged Core*:
 
- - Fixed the starter Allegiance Alpha cyberdeck being misidentified as a Cyber Shack PCD-500, which prevented buying the actual PCD-500.
+ - Fixed two bugs introduced by the `cyberdeck-storage-upgrades` patch:
+     - Fixed the starter Allegiance Alpha cyberdeck being misidentified as a Cyber Shack PCD-500, which prevented buying the actual PCD-500.
+     - Fixed the Storage upgrade price showing a very large number when loading a legacy save with Storage on a 25-MP half-step.
 
 ## v1.0
 

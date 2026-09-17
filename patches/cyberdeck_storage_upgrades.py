@@ -109,7 +109,7 @@ class Patch(PatchSpec):
                 "41F8FBBE"                     # LEA ($FBBE).W,A0 (current deck)
                 f"4EB9{storage_upgrade_calculator_address}"  # JSR calculator
                 "6F4C"                         # BLE.S maximum
-                "3601"                         # MOVE.W D1,D3 (save price)
+                "2601"                         # MOVE.L D1,D3 (save price; discard DIVS remainder)
                 f"43F9{STORAGE_LEFT_PROMPT:08X}"
                 "247C0000C606"                 # MOVEA.L #$C606,A2
                 "323C6000"                     # MOVE.W #$6000,D1
