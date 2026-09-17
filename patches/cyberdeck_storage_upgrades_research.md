@@ -35,7 +35,7 @@ is intended behavior.
 
 | Model | MPCP | Stock base MP | Stock `MPCP * 80` cap | Purchases possible |
 | --- | ---: | ---: | ---: | ---: |
-| Starter deck | 3 | 100 | 240 | 6, ending at 250 |
+| Allegiance Alpha (starter deck) | 3 | 100 | 240 | 6, ending at 250 |
 | Cyber Shack PCD-500 | 4 | 100 | 320 | 9, ending at 325 |
 | Fuchi Cyber-5 | 6 | 500 | 480 | 0 |
 | SEGA CTY-360 | 8 | 500 | 640 | 6, ending at 650 |
@@ -70,7 +70,7 @@ at max rank, with room for data files.
 
 | Model | MPCP | Patched base MP | Max ranks | Maximum MP | Total upgrade cost |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| Starter deck | 3 | 100 | 6 | 400 | 3,450¥ |
+| Allegiance Alpha (starter deck) | 3 | 100 | 6 | 400 | 3,450¥ |
 | Cyber Shack PCD-500 | 4 | 100 | 8 | 500 | 5,800¥ |
 | Fuchi Cyber-5 | 6 | 500 | 12 | 1,100 | 12,300¥ |
 | SEGA CTY-360 | 8 | 500 | 16 | 1,300 | 21,200¥ |
@@ -112,7 +112,7 @@ else:
 
 | Model | MPCP | Base memory | Nominal cap |
 | --- | ---: | ---: | ---: |
-| Starter deck | 3 | 30 | 120 |
+| Allegiance Alpha (starter deck) | 3 | 30 | 120 |
 | Cyber Shack PCD-500 | 4 | 50 | 160 |
 | Fuchi Cyber-5 | 6 | 100 | 240 |
 | SEGA CTY-360 | 8 | 200 | 320 |
@@ -134,10 +134,6 @@ Existing saves require two accommodations:
 - An old Excalibur may contain 1,000 MP while the new model base is 1,250.
   Signed rank calculation and a zero price floor let it buy upgrades normally
   rather than treating the save as corrupt or already maximized.
-
-The starter deck's old sentinel model ID is normalized to model 0. Sentinel
-records mirror the Cyber-7 and Excalibur base values so the compact helper can
-use one linear five-model lookup across the stock split table.
 
 ## Implementation boundaries
 

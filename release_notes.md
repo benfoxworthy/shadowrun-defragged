@@ -7,6 +7,11 @@ These changes are included in both *Defragged* and *Defragged Core*:
 
  - Fixed saving/loading when playing *Defragged* on certain third-party physical Genesis cartridges that require use of the Genesis SRAM-access flag.
 
+### Additional Patches
+Included in the full *Defragged* patch only and excluded from *Defragged Core*:
+
+ - Fixed the starter Allegiance Alpha cyberdeck being misidentified as a Cyber Shack PCD-500, which prevented buying the actual PCD-500.
+
 ## v1.0
 
 ### Core Patches

@@ -71,7 +71,7 @@ class Patch(PatchSpec):
                 "1428000D"                     # MOVE.B $D(A0),D2 (model ID)
                 "4A02"                         # TST.B D2
                 "6A02"                         # BPL.S model_is_valid
-                "4242"                         # CLR.W D2 (legacy $FF is model 0)
+                "4242"                         # CLR.W D2 (Allegiance uses model-0 storage base)
                 "C4FC000E"                     # MULU.W #14,D2
                 f"43F9{DECK_RECORDS:08X}"      # LEA cyberdeck records,A1
                 "3431200A"                     # MOVE.W $A(A1,D2.W),D2 (base)
@@ -164,27 +164,6 @@ class Patch(PatchSpec):
             ),
         )
 
-        # Normalize legacy decks with no model ID before calculating upgrades.
-        builder.replace(
-            offset=0x05768C,
-            source_genesis_sum=272546,
-            source_crc32_influence=0x4DC50C72,
-            payload=bytes.fromhex(
-                "1238F0D0"  # MOVE.B ($F0D0).W,D1
-                "41F8FBBE"  # LEA ($FBBE).W,A0
-                "4280"      # CLR.L D0
-                "1010"      # MOVE.B (A0),D0
-                "0C410002"  # CMPI.W #2,D1
-                "6764"      # BEQ.S original destination
-                "6E2E"      # BGT.S original destination
-                "4A41"      # TST.W D1
-                "6750"      # BEQ.S original destination
-                "4A28000D"  # TST.B $D(A0)
-                "6A04"      # BPL.S model_is_valid
-                "4228000D"  # CLR.B $D(A0) (normalize legacy $FF to model 0)
-            ),
-        )
-
         # Replace the stock flat cap and price calculation with the helper.
         builder.replace(
             offset=0x0576AE,
@@ -257,16 +236,5 @@ class Patch(PatchSpec):
                 "04E2"  # DC.W $FFFF -> DC.W $04E2 at first-block sentinel record 4 +$A
             ),
         )
-
-        # Give the starter cyberdeck an explicit model-0 ID.
-        builder.replace(
-            offset=0x14C201,
-            source_genesis_sum=255,
-            source_crc32_influence=0xE7F262D9,
-            payload=bytes.fromhex(
-                "00"  # DC.B $FF -> DC.B $00 at cyberdeck record +$D
-            ),
-        )
-
 
 PATCH = Patch()
