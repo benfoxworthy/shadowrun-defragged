@@ -92,6 +92,18 @@ class OutputPathTests(unittest.TestCase):
         self.assertEqual(self.source_bytes, self.source.read_bytes())
         self.assertFalse(other_output.exists())
 
+    def create_symlink_or_skip(self, link_path: Path, target_path: Path) -> None:
+        try:
+            link_path.symlink_to(target_path)
+        except (NotImplementedError, OSError) as error:
+            self.skipTest(f"symlinks are unavailable in this environment: {error}")
+
+    def create_hardlink_or_skip(self, link_path: Path, target_path: Path) -> None:
+        try:
+            os.link(target_path, link_path)
+        except (NotImplementedError, OSError) as error:
+            self.skipTest(f"hardlinks are unavailable in this environment: {error}")
+
     def test_outputs_cannot_equal_source(self) -> None:
         for option in ("--output-bps", "--output-rom"):
             with self.subTest(option=option):
@@ -102,14 +114,14 @@ class OutputPathTests(unittest.TestCase):
 
     def test_symlink_outputs_cannot_alias_source(self) -> None:
         alias = self.directory / "source-alias"
-        alias.symlink_to(self.source)
+        self.create_symlink_or_skip(alias, self.source)
         for option in ("--output-bps", "--output-rom"):
             with self.subTest(option=option):
                 self.assert_source_is_protected(alias, option)
 
     def test_hardlink_outputs_cannot_alias_source(self) -> None:
         alias = self.directory / "source-alias"
-        os.link(self.source, alias)
+        self.create_hardlink_or_skip(alias, self.source)
         for option in ("--output-bps", "--output-rom"):
             with self.subTest(option=option):
                 self.assert_source_is_protected(alias, option)
@@ -124,9 +136,9 @@ class OutputPathTests(unittest.TestCase):
                 else:
                     rom_output = self.rom_output
                     if alias_kind == "symlink":
-                        rom_output.symlink_to(self.patch_output)
+                        self.create_symlink_or_skip(rom_output, self.patch_output)
                     else:
-                        os.link(self.patch_output, rom_output)
+                        self.create_hardlink_or_skip(rom_output, self.patch_output)
                 try:
                     status, stderr = self.run_main(
                         "--source-rom", str(self.source),
@@ -141,7 +153,7 @@ class OutputPathTests(unittest.TestCase):
                     self.assertEqual(self.source_bytes, self.source.read_bytes())
                 finally:
                     if rom_output != self.patch_output:
-                        rom_output.unlink()
+                        rom_output.unlink(missing_ok=True)
 
     def test_default_outputs_cannot_equal_source(self) -> None:
         for suffix, option in (("bps", "--output-bps"), ("bin", "--output-rom")):
