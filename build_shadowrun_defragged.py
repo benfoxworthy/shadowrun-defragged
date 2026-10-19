@@ -702,6 +702,37 @@ def create_argument_parser() -> argparse.ArgumentParser:
     return parser
 
 
+def _paths_alias(first: Path, second: Path) -> bool:
+    """Recognize equal paths, symlinks, and existing hardlinks to one file."""
+
+    if first.resolve() == second.resolve():
+        return True
+    try:
+        return first.samefile(second)
+    except FileNotFoundError:
+        return False
+
+
+def validate_output_paths(
+    source_path: Path | None, patch_path: Path, rom_path: Path | None
+) -> None:
+    """Keep both outputs distinct from the source and from each other."""
+
+    if source_path is not None:
+        for option, output_path in (
+            ("--output-bps", patch_path),
+            ("--output-rom", rom_path),
+        ):
+            if output_path is not None and _paths_alias(output_path, source_path):
+                raise PatchBuildError(
+                    f"{option} must be different from --source-rom"
+                )
+    if rom_path is not None and _paths_alias(patch_path, rom_path):
+        raise PatchBuildError(
+            "--output-bps and --output-rom must be different files"
+        )
+
+
 def main() -> int:
     parser = create_argument_parser()
     args = parser.parse_args()
@@ -735,6 +766,15 @@ def main() -> int:
         manifest = base_manifest
 
     catalog = configure_catalog_for_manifest(catalog, manifest)
+
+    patch_path = args.output_bps or Path(f"{manifest.output_stem}.bps")
+    rom_path = args.output_rom
+    if args.source_rom is not None and rom_path is None:
+        rom_path = Path(f"{manifest.output_stem}.bin")
+    try:
+        validate_output_paths(args.source_rom, patch_path, rom_path)
+    except PatchBuildError as error:
+        parser.error(str(error))
 
     source: bytes | None = None
     source_crc32 = SOURCE_ROM_CRC32
@@ -781,13 +821,6 @@ def main() -> int:
         manifest.bps_metadata,
         source_crc32=source_crc32,
     )
-    patch_path = args.output_bps or Path(f"{manifest.output_stem}.bps")
-    rom_path = args.output_rom
-    if args.source_rom is not None and rom_path is None:
-        rom_path = Path(f"{manifest.output_stem}.bin")
-    if rom_path is not None and patch_path.resolve() == rom_path.resolve():
-        parser.error("--output-bps and --output-rom must be different files")
-
     target: bytes | None = None
     if source is not None:
         target = apply_edits(source, edits)
